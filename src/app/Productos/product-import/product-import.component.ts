@@ -26,7 +26,7 @@ export class ProductImportComponent implements OnInit {
    import(){
        this.productsService.importProducts().subscribe((res) => alert(JSON.stringify(res["success"])));
    }
-    
+    //Prueba
  
 
 }
