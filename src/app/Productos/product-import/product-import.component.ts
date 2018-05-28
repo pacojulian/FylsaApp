@@ -27,5 +27,9 @@ export class ProductImportComponent implements OnInit {
        this.productsService.importProducts().subscribe((res) => alert(JSON.stringify(res["success"])));
    }
     
+    handleFileInput(){
+        
+    }
+    
 
 }
