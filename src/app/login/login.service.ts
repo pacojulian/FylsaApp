@@ -9,7 +9,7 @@ import {User} from '../Models/user';
 
 @Injectable()
 export class LoginService {
-  apiRoot: string = "http://localhost:8080";
+  apiRoot: string = "https://fylsaserver.herokuapp.com";
   constructor(private router:Router, private http:HttpClient) { }
 
 
