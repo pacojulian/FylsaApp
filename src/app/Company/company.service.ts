@@ -7,7 +7,7 @@ import {Company} from '../Models/company';
 @Injectable()
 export class CompanyService {
 
-     apiRoot: string = "http://localhost:8080";
+  apiRoot: string = "https://fylsaserver.herokuapp.com";
      public company: Company;
 
   constructor(private http:HttpClient) { }

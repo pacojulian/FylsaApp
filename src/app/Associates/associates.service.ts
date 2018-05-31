@@ -8,7 +8,7 @@ import {Company} from '../Models/company';
 @Injectable()
 export class AssociatesService {
 
-       apiRoot: string = "http://localhost:8080";
+  apiRoot: string = "https://fylsaserver.herokuapp.com";
         public associates: Associates;
 
  constructor(private http:HttpClient) { }

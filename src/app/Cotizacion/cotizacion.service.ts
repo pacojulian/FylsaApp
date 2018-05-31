@@ -7,7 +7,7 @@ import {Quotation} from '../Models/quotation';
 @Injectable()
 export class CotizacionService {
 
-   apiRoot: string = "http://localhost:8080";
+  apiRoot: string = "https://fylsaserver.herokuapp.com";
    public inventory: Inventory[];
 
 
