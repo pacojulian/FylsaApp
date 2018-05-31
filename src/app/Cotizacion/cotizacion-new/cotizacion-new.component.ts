@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { CookieService } from 'ngx-cookie-service';
 import {CotizacionService} from '../cotizacion.service';
 import {Inventory} from '../../Models/inventory';
 import {Quotation} from '../../Models/quotation';
@@ -33,7 +34,20 @@ export class CotizacionNewComponent implements OnInit {
   searchQId: Quotation;
   displayStyle;
 
-  constructor(private cotizacionService: CotizacionService, private companyService:CompanyService, private associatesService:AssociatesService) { }
+  constructor(private cotizacionService: CotizacionService, private companyService:CompanyService, private associatesService:AssociatesService, private cookieService: CookieService) {
+    this.associates = new Array<Associates>();
+    this.inventoryList = new Array<Inventory>();
+    this.inventoryQList = new Array<Inventory>();
+    this.csList = new Array<Cotizacion_Service>();
+    this.otherInventoryItem = new Inventory("","",0,0,"");
+    this.quotation = new Quotation("","","","","",0,"","",this.csList,0);
+    this.searchBy = "";
+    this.itemIndex = 0;
+    this.quantity = new Array<number>();
+    this.typeService = ["Suministro", "Instalacion", "Suministro e Instalacion"];
+    this.typeSelected = new Array<number>();
+    this.total = 0;
+  }
 
   ngOnInit() {
     $(document).ready(function () {
@@ -62,14 +76,15 @@ export class CotizacionNewComponent implements OnInit {
             var curStep = $(this).closest(".setup-content"),
                 curStepBtn = curStep.attr("id"),
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                //curFormElements = curStep.find("input[type='text'],input[type='url']"),
+                curFormElements = curStep.find("input[type='text'],input[type='url'],select[name='empresa'],select[name='addressed']"),
                 isValid = true;
 
             $(".form-group").removeClass("has-error");
-            for(var i=0; i<curInputs.length; i++){
-                if (!curInputs[i].validity.valid){
+            for(var i=0; i<curFormElements.length; i++){
+                if (!curFormElements[i].validity.valid){
                     isValid = false;
-                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    $(curFormElements[i]).closest(".form-group").addClass("has-error");
                 }
             }
 
@@ -86,21 +101,11 @@ export class CotizacionNewComponent implements OnInit {
           });
         });
     });
+
     this.companyService.findAllCompanies().subscribe((res: any) =>{
         this.companies = res;
     });
-    this.associates = new Array<Associates>();
-    this.inventoryList = new Array<Inventory>();
-    this.inventoryQList = new Array<Inventory>();
-    this.csList = new Array<Cotizacion_Service>();
-    this.otherInventoryItem = new Inventory("","",0,0,"");
-    this.quotation = new Quotation("","","","","",0,"","",this.csList,0);
-    this.searchBy = "";
-    this.itemIndex = 0;
-    this.quantity = new Array<number>();
-    this.typeService = ["Suministro", "Instalacion", "Suministro e Instalacion"];
-    this.typeSelected = new Array<number>();
-    this.total = 0;
+
     this.displayStyle = {
       'display':'none'
     };
@@ -139,7 +144,6 @@ export class CotizacionNewComponent implements OnInit {
       }
   }
 
-
   calculateTotal() {
     this.total = 0;
     for (let quoteItem of this.csList) {
@@ -165,19 +169,15 @@ export class CotizacionNewComponent implements OnInit {
   }
 
   changeQuantity(val:any, j) {
-    //console.log(val)
     if(val >= 1) {
       this.csList[j].CANTITY = val;
-      //console.log(this.csList[j].CANTITY)
       this.calculateSubtotal(j);
     }
   }
 
   changeService(val:any, j) {
-    //console.log(val)
     if(val != '') {
       this.csList[j].PROVIDE = val;
-      //console.log(this.csList[j].PROVIDE)
       this.calculateSubtotal(j);
     }
   }
@@ -216,13 +216,16 @@ export class CotizacionNewComponent implements OnInit {
     }, 100)
   }
 
-  createQuotation() {
+  getDate() {
     this.now = new Date();
     let dd = ("0" + this.now.getDate()).slice(-2)
     let mm = ("0" + (this.now.getMonth() + 1)).slice(-2)
     let yyyy = this.now.getFullYear();
     let fecha = dd + '/' + mm + '/' + yyyy;
+    return fecha;
+  }
 
+  createQuotation() {
     if(this.quotation._id != "") {
       this.findQuotation();
     } else {
@@ -232,9 +235,9 @@ export class CotizacionNewComponent implements OnInit {
     if(this.csList.length > 0 && this.quotation.ADDRESED != "" && this.searchQId == null) {
       this.quotation.COST = this.total;
       this.quotation.COTIZACION_SERVICE = this.csList;
-      this.quotation.DATE = fecha;
+      this.quotation.DATE = this.getDate();
       //this.quotation._id = yyyy+""+mm+""+dd;
-      this.quotation.USER_ID = 10;
+      this.quotation.USER_ID = parseInt(this.cookieService.get('UserID'));
       this.cotizacionService.newQuotation(this.quotation);
       this.displayStyle = {
         'display':'block',
