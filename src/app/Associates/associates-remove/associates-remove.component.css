@@ -81,7 +81,13 @@ iframe {
 	max-width: 1200px;
 }
 
-
+.paragraph {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #999999;
+  line-height: 1.5;
+  margin-top: 25px;
+}
 
 
 /*//////////////////////////////////////////////////////////////////

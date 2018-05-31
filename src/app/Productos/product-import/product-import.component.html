@@ -8,22 +8,21 @@
 </div>-->
 
  <form class="well" action="" method="post" enctype="multipart/form-data">
-                        <fieldset>
-                            <legend>Importar CSV/Excel </legend>
-                            <div class="control-group">
-                                <div class="control-label">
-                                    <label>CSV/Excel File:</label>
-                                </div>
-                                <div class="controls form-group">
-                                    <input type="file" id="file" class="input-large form-control" >
-                                </div>
-                            </div>
+    <fieldset>
+        <legend>Importar CSV/Excel </legend>
+        <!-- <div class="control-group">
+            <div class="control-label">
+                <label>CSV/Excel File:</label>
+            </div>
+            <div class="controls form-group">
+                <input type="file" id="file" class="input-large form-control" (change)="handleFileInput($event.target.files)">
+            </div>
+        </div> -->
 
-                            <div class="control-group">
-                                <div class="controls">
-
-                                <button type="submit" id="submit" name="Import" class="btn btn-success btn-flat btn-lg pull-right button-loading import-btn" data-loading-text="Loading..." (click)="import()">Importar</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
+        <div class="control-group">
+            <div class="controls">
+            <button type="submit" id="submit" name="Import" class="btn btn-success btn-flat btn-lg pull-left import-btn" data-loading-text="Loading..." (click)="import()">Importar</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

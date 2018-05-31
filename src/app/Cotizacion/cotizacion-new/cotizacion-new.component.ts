@@ -43,7 +43,6 @@ export class CotizacionNewComponent implements OnInit {
                 allNextBtn = $('.nextBtn');
 
         allWells.hide();
-        
 
         navListItems.click(function (e) {
             e.preventDefault();
@@ -73,8 +72,6 @@ export class CotizacionNewComponent implements OnInit {
                     $(curInputs[i]).closest(".form-group").addClass("has-error");
                 }
             }
-            
-            
 
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
@@ -107,45 +104,18 @@ export class CotizacionNewComponent implements OnInit {
     this.displayStyle = {
       'display':'none'
     };
-    //this.quotation._id = "Luis Miguel";
-  }
-
-  searchCompanyId(name) {
-    let companyId;
-    for(let company of this.companies) {
-      if(company.NAME == name) {
-        companyId = company._id;
-        console.log(companyId);
-      }
-    }
-    return companyId;
   }
 
   changeAddressed(val:any) {
-    //let companyId = this.searchCompanyId(val);
     this.associatesService.findAssociatesByCompany(val).subscribe((res: any) =>{
         this.associates = res;
     });
   }
 
-  downloadPDF() {
-    setTimeout(()=>{
-      return xepOnline.Formatter.Format('HTMLtoPDF', {render: 'download', pageWidth:'216mm', pageHeight:'279mm'});
-    }, 100)
-    console.log("descargado")
-    setTimeout(()=>{
-      this.displayStyle = {
-        'display':'none'
-      };
-    }, 100)
-  }
-
   getItems() {
     this.cotizacionService.findItems(this.searchBy).subscribe((res:any) => {
       this.inventoryList = res;
-      // console.log(this.inventoryList.length)
     });
-
   }
 
   addToQuotation(i){
@@ -154,22 +124,7 @@ export class CotizacionNewComponent implements OnInit {
     this.typeSelected.push(1);
     this.csList.push(cot);
     this.inventoryQList.push(this.inventoryList[i]);
-    // for(let other of this.csList) {
-    //    console.log(other.ITEM + " " + other.DESCRIPTION + " " + other.PROVIDE + " " + other.CANTITY + " " + other.MEASURE_UNIT + " " + other.SALE_PRICE)
-    //  }
-    //this.refreshList();
   }
-
-  // refreshList() {
-  //   let otherList = new Array<Cotizacion_Service>();
-  //   for(let element of this.csList) {
-  //     let other = new Cotizacion_Service(element.ITEM,element.DESCRIPTION,element.PROVIDE,element.CANTITY,element.MEASURE_UNIT,element.SALE_PRICE);
-  //     console.log(other.ITEM + " " + other.DESCRIPTION + " " + other.PROVIDE + " " + other.CANTITY + " " + other.MEASURE_UNIT + " " + other.SALE_PRICE)
-  //     otherList.push(other);
-  //   }
-  //   this.csList = new Array<Cotizacion_Service>();
-  //   this.csList = otherList;
-  // }
 
   addToInventoryList() {
       if(this.otherInventoryItem.DESCRIPTION != "" &&
@@ -182,6 +137,31 @@ export class CotizacionNewComponent implements OnInit {
         this.csList.push(cot);
         this.inventoryQList.push(this.otherInventoryItem);
       }
+  }
+
+
+  calculateTotal() {
+    this.total = 0;
+    for (let quoteItem of this.csList) {
+      this.total = this.total + quoteItem.SALE_PRICE;
+    }
+    this.total = parseFloat(this.total.toFixed(4));
+  }
+
+  calculateSubtotal(j) {
+    if(this.csList[j].PROVIDE == 'Suministro') {
+        this.csList[j].SALE_PRICE = this.inventoryQList[j].PRICE * this.csList[j].CANTITY;
+    }
+    if(this.csList[j].PROVIDE == 'Instalacion') {
+        this.csList[j].SALE_PRICE = this.inventoryQList[j].LABOR_PRICE * this.csList[j].CANTITY;
+    }
+    if(this.csList[j].PROVIDE == 'Suministro e Instalacion') {
+      this.csList[j].SALE_PRICE = (this.inventoryQList[j].PRICE * this.csList[j].CANTITY) + (this.inventoryQList[j].LABOR_PRICE * this.csList[j].CANTITY);
+    }
+    this.csList[j].SALE_PRICE = parseFloat(this.csList[j].SALE_PRICE.toFixed(4));
+
+    //this.csList[j] = new Cotizacion_Service(this.csList[j].ITEM,this.csList[j].DESCRIPTION,this.csList[j].PROVIDE,this.csList[j].CANTITY,this.csList[j].MEASURE_UNIT,this.csList[j].SALE_PRICE);
+    this.calculateTotal();
   }
 
   changeQuantity(val:any, j) {
@@ -202,50 +182,6 @@ export class CotizacionNewComponent implements OnInit {
     }
   }
 
-  calculateSubtotal(j) {
-    if(this.csList[j].PROVIDE == 'Suministro') {
-        this.csList[j].SALE_PRICE = this.inventoryQList[j].PRICE * this.csList[j].CANTITY;
-    }
-    if(this.csList[j].PROVIDE == 'Instalacion') {
-        this.csList[j].SALE_PRICE = this.inventoryQList[j].LABOR_PRICE * this.csList[j].CANTITY;
-    }
-    if(this.csList[j].PROVIDE == 'Suministro e Instalacion') {
-      this.csList[j].SALE_PRICE = (this.inventoryQList[j].PRICE * this.csList[j].CANTITY) + (this.inventoryQList[j].LABOR_PRICE * this.csList[j].CANTITY);
-    }
-    this.csList[j].SALE_PRICE = parseFloat(this.csList[j].SALE_PRICE.toFixed(4));
-
-    //this.csList[j] = new Cotizacion_Service(this.csList[j].ITEM,this.csList[j].DESCRIPTION,this.csList[j].PROVIDE,this.csList[j].CANTITY,this.csList[j].MEASURE_UNIT,this.csList[j].SALE_PRICE);
-    this.calculateTotal();
-  }
-
-  // saveChanges(j) {
-  //   if(this.csList[j].CANTITY >= 1) {
-  //     //this.csList[j].CANTITY = this.quantity[j];
-  //     //this.csList[j].PROVIDE = this.typeService[j];
-  //     //console.log(this.quantity[j])
-  //     if(this.csList[j].PROVIDE == 'Suministro') {
-  //         this.csList[j].SALE_PRICE = this.inventoryQList[j].PRICE * this.csList[j].CANTITY;
-  //     }
-  //     if(this.csList[j].PROVIDE == 'Instalacion') {
-  //         this.csList[j].SALE_PRICE = this.inventoryQList[j].LABOR_PRICE * this.csList[j].CANTITY;
-  //     }
-  //     if(this.csList[j].PROVIDE == 'Suministro e Instalacion') {
-  //       this.csList[j].SALE_PRICE = (this.inventoryQList[j].PRICE * this.csList[j].CANTITY) + (this.inventoryQList[j].LABOR_PRICE * this.csList[j].CANTITY);
-  //     }
-  //      this.csList[j].SALE_PRICE = parseFloat(this.csList[j].SALE_PRICE.toFixed(4));
-  //     this.calculateTotal();
-  //   } else {
-  //     alert("No se puede guardar, algún campo en la fila está vacío");
-  //   }
-  // }
-
-  deleteRow(j) {
-    this.csList.splice(j,1);
-    this.inventoryQList.splice(j,1);
-    //refresh all item indexes
-    this.calculateTotal();
-  }
-
   refreshItemIndexes() {
     let index = 1;
     for(let element of this.csList) {
@@ -255,18 +191,29 @@ export class CotizacionNewComponent implements OnInit {
     this.itemIndex = index - 1;
   }
 
-  calculateTotal() {
-    this.total = 0;
-    for (let quoteItem of this.csList) {
-      this.total = this.total + quoteItem.SALE_PRICE;
-    }
-    this.total = parseFloat(this.total.toFixed(4));
+  deleteRow(j) {
+    this.csList.splice(j,1);
+    this.inventoryQList.splice(j,1);
+    this.refreshItemIndexes();
+    this.calculateTotal();
   }
 
   findQuotation() {
     this.cotizacionService.findQuotation(this.quotation._id).subscribe((res: any) =>{
         this.searchQId = res;
     });
+  }
+
+  downloadPDF() {
+    setTimeout(()=>{
+      return xepOnline.Formatter.Format('HTMLtoPDF', {render: 'download', pageWidth:'216mm', pageHeight:'279mm'});
+    }, 100)
+    console.log("descargado")
+    setTimeout(()=>{
+      this.displayStyle = {
+        'display':'none'
+      };
+    }, 100)
   }
 
   createQuotation() {
@@ -288,7 +235,7 @@ export class CotizacionNewComponent implements OnInit {
       this.quotation.DATE = fecha;
       //this.quotation._id = yyyy+""+mm+""+dd;
       this.quotation.USER_ID = 10;
-      //this.cotizacionService.newQuotation(this.quotation);
+      this.cotizacionService.newQuotation(this.quotation);
       this.displayStyle = {
         'display':'block',
       };

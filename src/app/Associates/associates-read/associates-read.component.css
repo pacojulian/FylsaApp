@@ -81,7 +81,12 @@ iframe {
 	max-width: 1200px;
 }
 
-
+.paragraph {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #999999;
+  line-height: 1.5;
+}
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -98,7 +103,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 5px;
   background: transparent;
   position: relative;
   z-index: 1;
@@ -140,7 +145,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: 68px;
+  padding-bottom: 40px;
 }
 
 .contact100-form-title {
@@ -165,7 +170,7 @@ iframe {
   position: relative;
   border-bottom: 2px solid #d9d9d9;
   padding-bottom: 13px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .rs1-wrap-input100 {
