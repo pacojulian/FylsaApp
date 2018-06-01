@@ -120,6 +120,7 @@ export class CotizacionNewComponent implements OnInit {
   getItems() {
     this.cotizacionService.findItems(this.searchBy).subscribe((res:any) => {
       this.inventoryList = res;
+      if(this.inventoryList.length <= 0) alert("No se encontró ningun item en el inventario");
     });
   }
 
@@ -244,7 +245,7 @@ export class CotizacionNewComponent implements OnInit {
       };
       this.downloadPDF();
     } else {
-      if(this.csList.length < 0) alert("Necesitas añadir items a la cotizacion");
+      if(this.csList.length <= 0) alert("Necesitas añadir items a la cotizacion");
       if(this.quotation.ADDRESED == "") alert("Necesitas elegir para quien va dirigido");
       if(this.searchQId != null) alert("El id de cotizacion ya existe");
     }
