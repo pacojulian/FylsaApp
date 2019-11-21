@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
     this.sessionName=this.cookieService.get('User');
       console.log(this.sessionName);
       if(this.sessionName){
-
            this.router.navigate(['Dashboard']);
       }
 

@@ -1,46 +1,142 @@
-  <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Fylsa S.A de C.V.</h3>
-                    <h4>{{sessionName}}</h4>
-                </div>
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Fylsa S.A de C.V.</h3>
+        <h4>{{sessionName}}</h4>
+    </div>
 
-                <ul class="list-unstyled components">
-                    <p>Módulos</p>
-                    <li >
-                           <a href="#servicesSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/products.svg'" class="image-icon" alt="productos image">Productos y Servicios</a>
-                        <ul class="collapse list-unstyled" id="servicesSubmenu">
-                            <li ><a (click)="viewProductsImport()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Añadir Productos CSV</a></li>
-
-                        </ul>
+    <ul class="list-unstyled components">
+        <p>Módulos</p>
+        <li>
+            <a href="#servicesSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/products.svg'" class="image-icon" alt="productos image">Productos y Servicios
+            </a>
+            <ul class="collapse list-unstyled" id="servicesSubmenu">
+                <a href="#inventorySubMenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/products.svg'" class="image-icon" alt="image">Inventario</a>
+                <ul class="collapse list-unstyled" id="inventorySubMenu">
+                    <li>
+                        <a (click)="viewProductsImport()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Añadir Productos CSV</a>
                     </li>
                     <li>
-                        <a href="#companySubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/company.svg'" class="image-icon" alt="compañia image">Compañía</a>
-                        <ul class="collapse list-unstyled" id="companySubmenu">
-                             <li><a (click)="viewNewCompanyAll()"><img [src]="'assets/icons/view.svg'" class="small-image-icon" alt="ver image">Ver Compañías</a></li>
-                            <li><a (click)="viewNewCompanyNew()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Añadir Compañia</a></li>
-                            <li><a (click)="viewNewCompanyUpdate()"><img [src]="'assets/icons/edit.svg'" class="small-image-icon" alt="editar image">Editar Compañia</a></li>
-                            <li><a (click)="viewNewCompanyDelete()"><img [src]="'assets/icons/delete.svg'" class="small-image-icon" alt="eliminar image">Eliminar Compañia</a></li>
-
-                          <a href="#associateSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/associates.svg'" class="image-icon" alt="image">Asociados</a>
-                             <ul class="collapse list-unstyled" id="associateSubmenu">
-                            <li><a (click)=" viewAssociatesRead()"><img [src]="'assets/icons/view.svg'" class="small-image-icon" alt="ver image">Ver Asociados</a></li>
-                            <li><a (click)="viewAssociatesNew()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Añadir Asociado</a></li>
-                            <li><a (click)="viewAssociatesUpdate()"><img [src]="'assets/icons/edit.svg'" class="small-image-icon" alt="editar image">Editar Asociado</a></li>
-                            <li><a (click)=" viewAssociatesRemove()"><img [src]="'assets/icons/delete.svg'" class="small-image-icon" alt="eliminar ">Eliminar Asociado</a></li>
-
-                            </ul>
-
-                        </ul>
+                        <a (click)="viewProductsImport()"><img [src]="'assets/icons/logout.svg'" class="small-image-icon" alt="anadir image">Registro de Salida</a>
+                    </li>
+                </ul>
+                <a href="#quoatationSubMenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/quotes.svg'" class="image-icon" alt="image">Cotizaciones</a>
+                <ul class="collapse list-unstyled" id="quoatationSubMenu">
+                    <li>
+                        <a (click)="viewCotizacionNew()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image"> Generar Nueva Cotizacion</a>
                     </li>
                     <li>
-                        <a href="#cotizacionSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/quotes.svg'" class="image-icon" alt="image">Cotización</a>
-                        <ul class="collapse list-unstyled" id="cotizacionSubmenu">
-                            <li ><a (click)="viewCotizacionNew()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image"> Generar Nueva Cotizacion</a></li>
+                        <a (click)="viewQuoatations()"><img [src]="'assets/icons/view.svg'" class="small-image-icon" alt="anadir image">Mostrar Cotizaciones</a>
+                    </li>
+                </ul>
 
-                        </ul>
+
+            </ul>
+        </li>
+        <!--
+            Menu de Administracion
+        -->
+        <li>
+            <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/execution.svg'" class="image-icon" alt="productos image"> Administración
+            </a>
+            <ul class="collapse list-unstyled" id="adminSubmenu">
+                <!--Compañia-->
+                <li>
+                    <a href="#companySubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/company.svg'" class="image-icon" alt="compañia image">Compañías</a>
+                </li>
+                <!--
+                     Compañias Submenu
+                 -->
+                <ul class="collapse list-unstyled" id="companySubmenu">
+                    <li>
+                        <a (click)="viewNewCompanyAll()"><img [src]="'assets/icons/view.svg'" class="small-image-icon" alt="ver image">Ver Compañías</a>
+                    </li>
+                    <li>
+                        <a (click)="viewNewCompanyNew()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Añadir Compañia</a>
+                    </li>
+                    <li>
+                        <a (click)="viewNewCompanyUpdate()"><img [src]="'assets/icons/edit.svg'" class="small-image-icon" alt="editar image">Editar Compañia</a>
+                    </li>
+                    <li>
+                        <a (click)="viewNewCompanyDelete()"><img [src]="'assets/icons/delete.svg'" class="small-image-icon" alt="eliminar image">Eliminar Compañia</a>
                     </li>
 
-                  <!--  <li class="active">
+                    <a href="#associateSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/associates.svg'" class="image-icon" alt="image">Asociados</a>
+                    <ul class="collapse list-unstyled" id="associateSubmenu">
+                        <li>
+                            <a (click)=" viewAssociatesRead()"><img [src]="'assets/icons/view.svg'" class="small-image-icon" alt="ver image">Ver Asociados</a>
+                        </li>
+                        <li>
+                            <a (click)="viewAssociatesNew()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Añadir Asociado</a>
+                        </li>
+                        <li>
+                            <a (click)="viewAssociatesUpdate()"><img [src]="'assets/icons/edit.svg'" class="small-image-icon" alt="editar image">Editar Asociado</a>
+                        </li>
+                        <li>
+                            <a (click)=" viewAssociatesRemove()"><img [src]="'assets/icons/delete.svg'" class="small-image-icon" alt="eliminar ">Eliminar Asociado</a>
+                        </li>
+                    </ul>
+                </ul>
+                <!--Empleados-->
+                <li>
+                    <a href="#employeesSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/avatar.svg'" class="image-icon" alt="compañia image">Empleados</a>
+                </li>
+                <!--
+                    Empleados SubMenus
+                -->
+                <ul class="collapse list-unstyled" id="employeesSubmenu">
+                    <li>
+                        <a (click)="viewNewCompanyAll()"><img [src]="'assets/icons/money.svg'" class="small-image-icon" alt="ver image">Nómina</a>
+                    </li>
+                    <li>
+                        <a (click)="viewNewCompanyAll()"><img [src]="'assets/icons/time.svg'" class="small-image-icon" alt="ver image">Horario</a>
+                    </li>
+                    <li>
+                        <a (click)="viewNewCompanyAll()"><img [src]="'assets/icons/avatar.svg'" class="small-image-icon" alt="ver image">Lista de Empleados</a>
+                    </li>
+                </ul>
+                <!--Vehiculos-->
+                <li>
+                    <a href="#vehiclesSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/car.svg'" class="image-icon" alt="compañia image">Vehículos</a>
+                </li>
+                <!--
+                    Vehiculos Submenu
+                -->
+                <ul class="collapse list-unstyled" id="vehiclesSubmenu">
+                    <li>
+                        <a (click)="viewNewCompanyAll()"><img [src]="'assets/icons/car.svg'" class="small-image-icon" alt="ver image">Por Definir</a>
+                    </li>
+                </ul>
+            </ul>
+        </li>
+        <!--
+            Estadisticas
+        -->
+        <li>
+            <a href="#stadisticsSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/bar-chart.svg'" class="image-icon" alt="image">Estadisticas</a>
+            <ul class="collapse list-unstyled" id="stadisticsSubmenu">
+                <li>
+                    <a (click)="viewStadistics()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image"> Dash Board </a>
+                </li>
+
+            </ul>
+        </li>
+        <!--
+            Proyectos
+        -->
+        <li>
+            <a href="#projectsSubmenu" data-toggle="collapse" aria-expanded="false"><img [src]="'assets/icons/project.svg'" class="image-icon" alt="image">Proyectos</a>
+            <ul class="collapse list-unstyled" id="projectsSubmenu">
+                <li>
+                    <a (click)="viewProjects()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Portafolio de Proyectos</a>
+                </li>
+                <li>
+                    <a (click)="viewProjectsNew()"><img [src]="'assets/icons/add.svg'" class="small-image-icon" alt="anadir image">Nuevo Proyecto</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <!--  <li class="active">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li><a href="#">Home 1</a></li>
@@ -63,10 +159,10 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>-->
-                </ul>
+    </ul>
 
-            <!-- <ul class="list-unstyled CTAs">
+    <!-- <ul class="list-unstyled CTAs">
                     <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
                     <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
                 </ul>-->
-            </nav>
+</nav>

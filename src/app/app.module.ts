@@ -29,6 +29,12 @@ import { DashboardService } from './dashboard/dashboard.service';
 import {LoginService} from './login/login.service';
 import { CookieService } from 'ngx-cookie-service';
 import{Ng2Webstorage} from 'ngx-webstorage';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
+
+import { CotizacionAllComponent } from './Cotizacion/cotizacion-all/cotizacion-all.component';
+import { DashBoardComponent } from './Stadistics/dash-board/dash-board.component';
+import { DashboardProjectComponent } from './Projects/dashboard-project/dashboard-project.component';
+import { ProjectNewComponent } from './Projects/project-new/project-new.component';
 
 
 @NgModule({
@@ -47,7 +53,11 @@ import{Ng2Webstorage} from 'ngx-webstorage';
     CompanyNewComponent,
     CompanyReadComponent,
     CompanyDeleteComponent,
-    CompanyUpdateComponent
+    CompanyUpdateComponent,
+    CotizacionAllComponent,
+    DashBoardComponent,
+    DashboardProjectComponent,
+    ProjectNewComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +66,8 @@ import{Ng2Webstorage} from 'ngx-webstorage';
       FormsModule,
       HttpClientModule,
       ReactiveFormsModule,
-      Ng2Webstorage
+      Ng2Webstorage,
+      NgxUiLoaderModule
 
   ],
   providers: [

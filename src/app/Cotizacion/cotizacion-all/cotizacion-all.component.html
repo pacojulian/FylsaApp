@@ -1,0 +1,27 @@
+<div class = "container">
+  <div>
+    <h1>Cotizaciones</h1>
+  </div>
+<div>
+    <table class="table table-striped table-bordered table-hover" id="resultsTableQuoatation">
+        <thead>
+          <tr>
+            <th scope="col">Id. Cotización<input type="text" placeholder="Filtro" class="form-control mySearch"></th>
+            <th scope="col">Compañia<br><input type="text" placeholder="Filtro"  class="form-control mySearch"></th>
+            <th scope="col">Total<br><input type="text" placeholder="Filtro"  class="form-control mySearch"></th>
+            <th scope="col">Status<br><input type="text" placeholder="Filtrar por "  class="form-control mySearch"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor= "let u of users;" (click)="RowSelected(u);" id="myTr">
+              <td>{{u.Id}}</td>
+              <td>{{u.Company}}</td>
+              <td>{{u.Total}}</td>
+              <td [ngClass]="{red: u.Status == 'Rechazada', green: u.Status == 'Pagada', orange: u.Status == 'En proceso'}">{{u.Status}}</td>
+
+          </tr>
+          
+        </tbody>
+      </table>
+</div>
+</div>
