@@ -69,6 +69,7 @@ constructor(private ngxService: NgxUiLoaderService) { }
 
     $(document).ready(function() {
 
+      
        } );
 
     $(".mySearch").on("keyup", function() {

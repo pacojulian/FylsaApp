@@ -1,0 +1,49 @@
+.select-company {
+    width: 50%;
+}
+
+.date-finish {
+    width: 30%;
+}
+
+border-div {
+    border-radius: 25px;
+    border: 1px solid #73AD21;
+    height: 200px;
+}
+
+.tableFixHead {
+    overflow-y: auto;
+    height: 180px;
+    margin-top: 10px;
+    border-radius: 25px;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+}
+
+
+/* Just common table stuff. Really. */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px 16px;
+}
+
+th {
+    background: #eee;
+}
+
+.newProject {
+    height: 40px;
+    position: relative;
+    left: 800px;
+    top: 80px;
+}

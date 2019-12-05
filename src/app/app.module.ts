@@ -30,6 +30,10 @@ import {LoginService} from './login/login.service';
 import { CookieService } from 'ngx-cookie-service';
 import{Ng2Webstorage} from 'ngx-webstorage';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import { ModalModule } from 'ngx-bootstrap';
+
+
+
 
 import { CotizacionAllComponent } from './Cotizacion/cotizacion-all/cotizacion-all.component';
 import { DashBoardComponent } from './Stadistics/dash-board/dash-board.component';
@@ -67,7 +71,8 @@ import { ProjectNewComponent } from './Projects/project-new/project-new.componen
       HttpClientModule,
       ReactiveFormsModule,
       Ng2Webstorage,
-      NgxUiLoaderModule
+      NgxUiLoaderModule,
+      ModalModule.forRoot()
 
   ],
   providers: [

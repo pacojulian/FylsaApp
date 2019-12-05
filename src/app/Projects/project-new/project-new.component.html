@@ -2,18 +2,133 @@
     <div class="row">
         <div class="col-md-6">
             <h1>Info del Proyecto</h1>
-            <p>Compañia</p>
-            <p>Responsable</p>
-            <p>Tiempo</p>
+            <div class="form-group">
+                <label for="sel1">Compañia</label>
+                <select class="form-control select-company" [(ngModel)]="selectedCompany" (change)="callType(selectedOption)">
+                    <option *ngFor="let o of optionsCompany">
+                        {{o.name}}
+                     </option>
+                </select>
+                <div *ngIf="isAssociate">
+                    <label for="sel1">Responsable</label>
+                    <select class="form-control select-company" [(ngModel)]="selectedAssociate">
+                        <option *ngFor="let o of optionsAssociate">
+                            {{o.name}}
+                         </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sel1">Tiempo Aproximado de Finalización</label>
+                    <div class="form-group">
+                        <div class='input-group date date-finish' id='datetimepicker2'>
+                            <input type='text' class="form-control datepicker" data-provide="datepicker" />
+                            <span class=" input-group-addon ">
+                                <span class="glyphicon glyphicon-calendar " ></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 ">
             <h1>Descripción</h1>
+            <div class="form-group ">
+                <textarea [(ngModel)]="summaryDesc" rows="4 " cols="50 "></textarea>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row ">
+        <div class="col-md-10 ">
             <h1>Personal</h1>
+            <div class='input-group date date-finish' id='datetimepicker2'>
+                <input placeholder="Buscar Empleados" type='text' class="form-control" id="mySearch" />
+                <span class=" input-group-addon ">
+                    <span class="glyphicon glyphicon-search"></span>
+                </span>
+            </div>
+            <div class="tableFixHead">
+                <table id="resultsTable" class="table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Puesto</th>
+                            <th scope="col">Salario</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="myTr" *ngFor="let p of personal;" (click)="openModalAddPersonal(addPersonal, p)">
+                            <td>{{p.name}}</td>
+                            <td>{{p.job}}</td>
+                            <td>{{p.salary}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
+    <div class="row">
+        <div class="newProject">
+            <button type="button" class="btn btn-success" (click)="openModalSummary(summary)">Crear nuevo proyecto</button>
+        </div>
+    </div>
+
+    <!--
+        Modals
+    -->
+    <!-- Add personal-->
+    <ng-template #addPersonal>
+        <div class="modal-header">
+            <h2 class="modal-title pull-left">Añadir Usuario</h2>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Puesto</th>
+                        <th scope="col">Salario</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{selectedPersonal.name}}</td>
+                        <td>{{selectedPersonal.job}}</td>
+                        <td>{{selectedPersonal.salary}}</td>
+                        <td><button type="button" class="btn btn-success" (click)="addP()">Añadir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </ng-template>
+    <!--Summary-->
+    <ng-template #summary>
+        <div class="modal-header">
+            <h2 class="modal-title pull-left">Resumen</h2>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+        </div>
+        <div class="modal-body">
+            <p><b>Compañia</b> {{summary2.comp}}</p>
+            <p><b>Responsable</b> {{summary2.desc}}</p>
+            <p><b>Tiempo</b> {{summary2.time}}</p>
+            <p><b>Descripcion</b> {{summary2.desc}}</p>
+            <hr>
+            <h3>Personal</h3>
+            <div *ngFor="let r of resultsPersonal">
+                <p>{{r.name}}</p>
+            </div>
+            <div>
+                <button type="button" class="btn btn-success">Crear proyecto</button>
+            </div>
+        </div>
+    </ng-template>
 </div>
