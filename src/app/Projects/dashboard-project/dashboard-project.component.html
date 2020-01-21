@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 border-div">
+            <div class="tableFixHead">
+                <table class="table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Compañia</th>
+                            <th scope="col">Nombre del proyecto</th>
+                            <th scope="col">Status </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of projects;" (click)="RowSelected(p);">
+                            <td>{{p.Company}}</td>
+                            <td>{{p.Name}}</td>
+                            <td>{{p.Status}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4 border-div div-graph">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 border-div-desc">
+            <h1>{{test.name}}</h1>
+        </div>
+        <div class="col-md-4 border-div-personal">
+            <h1>Personal</h1>
+            <div class="tableFixHead">
+                <table class="table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Horas trabajadas</th>
+                            <th scope="col">Extra Horas </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of personal;">
+                            <td>{{p.name}}</td>
+                            <td>{{p.workedHours}}</td>
+                            <td>{{p.extraHours}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

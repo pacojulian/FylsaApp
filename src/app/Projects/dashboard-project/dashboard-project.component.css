@@ -1,0 +1,53 @@
+.border-div {
+    border-radius: 25px;
+    border: 1px solid #73AD21;
+    height: 200px;
+}
+
+.tableFixHead {
+    overflow-y: auto;
+    height: 180px;
+    margin-top: 10px;
+    border-radius: 25px;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+}
+
+
+/* Just common table stuff. Really. */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px 16px;
+}
+
+th {
+    background: #eee;
+}
+
+.div-graph {
+    right: -10px;
+}
+
+.border-div-personal {
+    top: 10px;
+    border-radius: 25px;
+    border: 1px solid #73AD21;
+    height: 300px;
+    right: -10px;
+}
+
+.border-div-desc {
+    top: 10px;
+    border-radius: 25px;
+    border: 1px solid #73AD21;
+    height: 600px;
+}
