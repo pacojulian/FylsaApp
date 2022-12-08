@@ -26,7 +26,7 @@
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "core-js": "^2.6.10",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jquery": "^3.4.1",
     "ngx-bootstrap": "^2.0.5",
     "ngx-cookie-service": "^1.0.10",
